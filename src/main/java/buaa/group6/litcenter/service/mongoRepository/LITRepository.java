@@ -7,7 +7,5 @@ import java.util.List;
 
 public interface LITRepository extends MongoRepository<Literature,String> {
     List<Literature> getByTitleContaining(String keyword);
-    List<Literature> getByTitle(String title);
-    List<Literature> getByAuthor(String author);
     Literature getById(String Id);
 }

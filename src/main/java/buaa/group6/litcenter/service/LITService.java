@@ -9,10 +9,8 @@ import java.util.List;
 public interface LITService {
     //标题查询
     List<Literature> getLITByTitle(String title);
-    //标题关键词查询
-    List<Literature> getLITByTitleContaining(String titleContaining);
     //作者查询
-    List<Literature> getLITByAuthor(String author);
+   // List<Literature> getLITByAuthor(String author);
     //ID查询
     Literature getLITByID(String ID);
 }
