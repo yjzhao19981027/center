@@ -1,6 +1,7 @@
 package buaa.group6.litcenter.service;
 
 import buaa.group6.litcenter.model.Author;
+import buaa.group6.litcenter.model.Magauthor;
 import buaa.group6.litcenter.service.mongoRepository.AuthorRepository;
 import buaa.group6.litcenter.service.mongoRepository.LITRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,12 @@ public class AuthorServiceImpl implements AuthorService{
     AuthorRepository authorRepository;
 
     @Override
-    public Author getAuthorByID(String id) {
+    public Magauthor getAuthorByID(String id) {
         return authorRepository.getById(id);
     }
 
     @Override
-    public List<Author> getAuthorByName(String name) {
-        return authorRepository.getByNameContaining(name);
+    public List<Magauthor> getAuthorByName(String name) {
+        return authorRepository.getByNormalizedNameContaining(name);
     }
 }

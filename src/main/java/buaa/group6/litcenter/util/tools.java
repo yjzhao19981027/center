@@ -2,6 +2,7 @@ package buaa.group6.litcenter.util;
 
 import buaa.group6.litcenter.model.Author;
 import buaa.group6.litcenter.model.Literature;
+import buaa.group6.litcenter.model.Magauthor;
 import buaa.group6.litcenter.service.AuthorService;
 import buaa.group6.litcenter.service.LITService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,12 +58,12 @@ public class tools {
 
     //通过作者的姓名的关键字获取
     //不分页
-    public List<Author> getAuthorByName(String params){
+    public List<Magauthor> getAuthorByName(String params){
         return authorService.getAuthorByName(params);
     }
 
     //通过作者的ID获取
-    public Author getAuthorByID(String id){
+    public Magauthor getAuthorByID(String id){
         return authorService.getAuthorByID(id);
     }
 
@@ -82,7 +83,7 @@ public class tools {
         }
 
         else{
-            List<Author> list = authorService.getAuthorByName(params);
+            List<Magauthor> list = authorService.getAuthorByName(params);
             objectList.add(list.size() / onePage);
             objectList.add(list.subList(onePage * (pageNumber - 1), Math.min(list.size(),onePage * pageNumber)));
         }
@@ -94,7 +95,7 @@ public class tools {
     //作者/文献List结构： {作者数，作者集}/{文献数，文献集}
     public List<Object> getBoth(String params){
         List<Object> list = null;
-        List<Author> authorList = authorService.getAuthorByName(params);
+        List<Magauthor> authorList = authorService.getAuthorByName(params);
         List<Literature> litList = litService.getLITByTitle(params);
         list.add(addObject(authorList,authorList.size()));
         list.add(addObject(litList,litList.size()));
