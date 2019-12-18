@@ -3,6 +3,7 @@ package buaa.group6.litcenter.model;
 import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,8 @@ import java.util.List;
 
 @Document(collection = "magpapers")
 public class Literature {
-    @Autowired
-    private RestTemplate restTemplate;
+    @Id
+    private String _id;
 
     private String id;
 
