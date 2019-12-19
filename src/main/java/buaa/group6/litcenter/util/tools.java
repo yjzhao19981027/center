@@ -1,14 +1,17 @@
 package buaa.group6.litcenter.util;
 
 import buaa.group6.litcenter.container.LITPaging;
+import buaa.group6.litcenter.container.UserPaging;
 import buaa.group6.litcenter.container.authorPaging;
 import buaa.group6.litcenter.container.autoGenerate;
 import buaa.group6.litcenter.model.Author;
 import buaa.group6.litcenter.model.Literature;
 import buaa.group6.litcenter.model.Magauthor;
+import buaa.group6.litcenter.model.User;
 import buaa.group6.litcenter.service.AuthorService;
 import buaa.group6.litcenter.service.LITService;
 import buaa.group6.litcenter.service.mongoRepository.LITRepository;
+import buaa.group6.litcenter.service.mongoRepository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
@@ -30,6 +33,8 @@ public class tools {
     AuthorService authorService;
     @Autowired
     LITRepository litRepository;
+    @Autowired
+    UserRepository userRepository;
 
     //文献排序
     //第一个参数是按什么排序（发布时间、获得"有帮助"个数、浏览量、被引用量、），第二个参数就是要排序的文献集
@@ -102,6 +107,16 @@ public class tools {
         //List<Literature> list = litService.getTop100LITByTitle(title);
         obj.setTotalPage((onePage - 1 + list.size()) / onePage);
         obj.setLITs(list.subList(onePage * (pageNumber - 1), Math.min(list.size(),onePage * pageNumber)));
+        return obj;
+    }
+
+    public UserPaging getUsersByPaging(String name, String page){
+        UserPaging obj = new UserPaging();
+        int pageNumber = Integer.parseInt(page);
+        int onePage = 10; //每页显示个数，可调整
+        List<User> list = userRepository.getByUsernameContaining(name);
+        obj.setTotalPage((onePage - 1 + list.size()) / onePage);
+        obj.setList(list.subList(onePage * (pageNumber - 1), Math.min(list.size(),onePage * pageNumber)));
         return obj;
     }
 

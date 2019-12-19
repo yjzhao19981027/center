@@ -23,10 +23,14 @@
 	类型：GET方法
 	参数：title，pageNumber
 	参数类型：String，String
-	参数说明：文献标题含有的关键字、要显示的页数
+	参数说明：文献标题含有的关键字、要生成的页数
 	详细说明：前端传回关键字和要生成的页数（点击搜索之后的页面），后端传回一个对象，里面有当页的文献list和总页数。每页当前显示10个，后续可调整。
 	实例：http://localhost:8004/getLITsByPaging?title=白居易&pageNumber=2
 	实例返回：authorPaging类的一个对象，包含总页数totalPage和List<Magauthor>类型的authors
+
+4、通过文献名获取当页文献及其总页数：（模糊搜索）
+	基本同3，区别在于只取Top100（速度快）
+	实例：http://localhost:8004/getTop100LITsByPaging?title=白居易&pageNumber=2
 
 
 二、作者部分：
@@ -52,12 +56,16 @@
 	类型：GET方法
 	参数：name，pageNumber
 	参数类型：String，String
-	参数说明：作者名的关键字
+	参数说明：作者名的关键字，要生成的页数
 	详细说明：前端传回关键字和要生成的页数，后端传回一个对象，里面包含当页的作者的list以及总页数。每页当前显示10个，后续可调整。
 	实例：http://localhost:8004/getAuthorsByPaging?name=夏新&pageNumber=2
 	返回类型：LITPaging类的一个对象，包含总页数totalPage和List<Literature>类型的LITs
 
-4、通过作者名获取Top5作者：
+4、通过作者名获取当页作者及其总页数：（模糊搜索）
+	基本同3，区别在于只取Top100（速度快）
+	实例：http://localhost:8004/getTop100AuthorsByPaging?name=白居易&pageNumber=1
+
+5、通过作者名获取Top5作者：
 类型：GET方法
 	参数：name
 	参数类型：String
@@ -66,8 +74,17 @@
 	实例：http://localhost:8004/getTop5Authors?name=夏新
 	返回类型：List<Magauthor>
 
+三、用户部分：
+通过用户名获取当页作者及其总页数：（模糊搜索）
+	类型：GET方法
+	参数：name，pageNumber
+	参数类型：String，String
+	参数说明：作者名的关键字,要生成的页数
+	详细说明：前端传回关键字和要生成的页数，后端传回一个对象，里面包含当页的用户的list以及总页数。每页当前显示10个，后续可调整。
+	实例：http://localhost:8004/getUsersByPaging?name=hu&pageNumber=1
+	返回类型：UserPaging类的一个对象，里面包含总页数totalPage和一个List<User>的list
 
-三、智能生成部分：
+四、智能生成部分：
 通过关键字获取作者和文献：（模糊搜索）
 类型：GET方法
 	参数：params
