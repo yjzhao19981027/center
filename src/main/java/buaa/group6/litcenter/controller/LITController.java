@@ -1,5 +1,6 @@
 package buaa.group6.litcenter.controller;
 
+import buaa.group6.litcenter.container.LITPaging;
 import buaa.group6.litcenter.util.tools;
 import buaa.group6.litcenter.model.Literature;
 import buaa.group6.litcenter.service.LITService;
@@ -16,18 +17,18 @@ public class LITController {
     tools Tool = new tools();
 
     @ResponseBody
-    @RequestMapping(value = "getLITs", method = RequestMethod.GET)
-    public List<Literature> getLITs(@RequestParam String params){
-        return Tool.getLITByTitle(params);
-    }
-
     @RequestMapping(value = "getLIT", method = RequestMethod.GET)
     public Literature getLIT(@RequestParam String id){
         return Tool.getLITByID(id);
     }
 
+    @RequestMapping(value = "getLITs", method = RequestMethod.GET)
+    public List<Literature> getLITs(@RequestParam String title){
+        return Tool.getLITByTitle(title);
+    }
+
     @RequestMapping(value = "getLITsByPaging", method = RequestMethod.GET)
-    public List<Object> getLITs(@RequestParam String params,int pageNumber){
-        return Tool.getByPaging(true,params,pageNumber);
+    public LITPaging getLITs(@RequestParam String title, String pageNumber){
+        return Tool.getLITsByPaging(title,pageNumber);
     }
 }

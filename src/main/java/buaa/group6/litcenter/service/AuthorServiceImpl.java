@@ -20,9 +20,14 @@ public class AuthorServiceImpl implements AuthorService{
     public Magauthor getAuthorByID(String id) {
         return authorRepository.getById(id);
     }
-
     @Override
     public List<Magauthor> getAuthorByName(String name) {
         return authorRepository.getByNormalizedNameContaining(name);
     }
+
+    @Override
+    public List<Magauthor> getTop5AuthorByName(String name) {
+        return authorRepository.getTop5ByNormalizedNameStartingWith(name);
+    }
+
 }

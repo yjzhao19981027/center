@@ -1,0 +1,81 @@
+文献和作者部分API说明
+接口实例：
+一、文献部分：
+1、通过id获取文献：
+	类型：GET方法
+	参数：id
+	参数类型：String
+	参数说明：文献id
+	详细说明：前端传回文献id，后端返回找到的文献。
+	实例：http://localhost:8004/getLIT?id=1000000889
+    返回类型：Literature（文献类）
+
+2、通过文献名获取文献：（模糊搜索）
+	类型：GET方法
+	参数：title
+	参数类型：String
+	参数说明：文献标题含有的关键字
+	详细说明：前端传回关键字，后端通过关键字模糊搜索，传回符合要求的文献list。
+	实例：http://localhost:8004/getLITs?title=白居易
+	返回类型：List<Literature>
+
+3、通过文献名获取当页文献及其总页数：（模糊搜索）
+	类型：GET方法
+	参数：title，pageNumber
+	参数类型：String，String
+	参数说明：文献标题含有的关键字、要显示的页数
+	详细说明：前端传回关键字和要生成的页数（点击搜索之后的页面），后端传回一个对象，里面有当页的文献list和总页数。每页当前显示10个，后续可调整。
+	实例：http://localhost:8004/getLITsByPaging?title=白居易&pageNumber=2
+	实例返回：authorPaging类的一个对象，包含总页数totalPage和List<Magauthor>类型的authors
+
+
+二、作者部分：
+1、通过作者id获取作者：
+	类型：GET方法
+	参数：id
+	参数类型：String
+	参数说明：作者的id
+	详细说明：前端传回作者id，后端传回相应的作者。
+	实例：http://localhost:8004/getAuthor?id=1000002288
+	返回类型：Magauthor（作者类）
+
+2、通过作者名获取作者（模糊搜索）
+	类型：GET方法
+	参数：name
+	参数类型：String
+	参数说明：作者名的关键字
+	详细说明：前端传回关键字，后端传回符合关键字的作者list。
+	实例：http://localhost:8004/getAuthors?name=夏新
+	实例返回：List<Magauthor>
+
+3、通过作者名获取当页作者及其总页数：（模糊搜索）
+	类型：GET方法
+	参数：name，pageNumber
+	参数类型：String，String
+	参数说明：作者名的关键字
+	详细说明：前端传回关键字和要生成的页数，后端传回一个对象，里面包含当页的作者的list以及总页数。每页当前显示10个，后续可调整。
+	实例：http://localhost:8004/getAuthorsByPaging?name=夏新&pageNumber=2
+	返回类型：LITPaging类的一个对象，包含总页数totalPage和List<Literature>类型的LITs
+
+4、通过作者名获取Top5作者：
+类型：GET方法
+	参数：name
+	参数类型：String
+	参数说明：关键字，通过这个关键字搜索Top5作者
+	详细说明：前端传回关键字，后端传回一个Top5的作者list
+	实例：http://localhost:8004/getTop5Authors?name=夏新
+	返回类型：List<Magauthor>
+
+
+三、智能生成部分：
+通过关键字获取作者和文献：（模糊搜索）
+类型：GET方法
+	参数：params
+	参数类型：String
+	参数说明：关键字，通过这个关键字搜索作者和文献
+	详细说明：前端传回关键字，后端返回一个对象，对象里有作者list，作者list的长度，文献list和文献list的长度。两个长度当前不超过3（考虑到智能生成部分页面空间有限），后续可以调整。
+	实例：http://localhost:8004/getBoth?params=白居易
+	返回类型：autoGenerate类的一个对象，里面包含List<Magauthor>类型的authors和其长度authorLen
+	                                       List<Literature>类型的literature和其长度LITLen
+
+

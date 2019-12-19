@@ -8,4 +8,5 @@ import java.util.List;
 public interface AuthorService {
     Magauthor getAuthorByID(String id);
     List<Magauthor> getAuthorByName(String name);
+    List<Magauthor> getTop5AuthorByName(String name);
 }

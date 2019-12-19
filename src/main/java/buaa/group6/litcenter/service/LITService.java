@@ -12,5 +12,7 @@ public interface LITService {
     //作者查询
    // List<Literature> getLITByAuthor(String author);
     //ID查询
-    Literature getLITByID(String ID);
+    Literature getLITByID(String id);
+
+    List<Literature> getTop5LITByTitle(String title);
 }

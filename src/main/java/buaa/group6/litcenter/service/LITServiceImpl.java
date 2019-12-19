@@ -19,13 +19,13 @@ public class LITServiceImpl implements LITService {
         return litRepository.getByTitleContaining(title);
     }
 
-//    @Override
-//    public List<Literature> getLITByAuthor(String author) {
-//        return litRepository.getByAuthor(author);
-//    }
+    @Override
+    public Literature getLITByID(String id) {
+        return litRepository.getById(id);
+    }
 
     @Override
-    public Literature getLITByID(String ID) {
-        return litRepository.getById(ID);
+    public List<Literature> getTop5LITByTitle(String title) {
+        return litRepository.getTop5ByTitleStartingWith(title);
     }
 }

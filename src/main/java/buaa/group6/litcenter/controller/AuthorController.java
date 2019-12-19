@@ -1,5 +1,6 @@
 package buaa.group6.litcenter.controller;
 
+import buaa.group6.litcenter.container.authorPaging;
 import buaa.group6.litcenter.model.Author;
 
 import buaa.group6.litcenter.model.Magauthor;
@@ -21,12 +22,17 @@ public class AuthorController {
     }
 
     @RequestMapping(value = "getAuthors",method = RequestMethod.GET)
-    public List<Magauthor> getAuthors(@RequestParam String params){
-        return Tool.getAuthorByName(params);
+    public List<Magauthor> getAuthors(@RequestParam String name){
+        return Tool.getAuthorByName(name);
+    }
+
+    @RequestMapping(value = "getTop5Authors",method = RequestMethod.GET)
+    public List<Magauthor> getTop5Authors(@RequestParam String name){
+        return Tool.getTop5AuthorByName(name);
     }
 
     @RequestMapping(value = "getAuthorsByPaging", method = RequestMethod.GET)
-    public List<Object> getLITs(@RequestParam String params,int pageNumber){
-        return Tool.getByPaging(false,params,pageNumber);
+    public authorPaging getAuthors(@RequestParam String name, String pageNumber){
+        return Tool.getAuthorsByPaging(name,pageNumber);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface LITRepository extends MongoRepository<Literature,String> {
-    List<Literature> getByTitleContaining(String keyword);
-    Literature getById(String Id);
+    List<Literature> getByTitleContaining(String title);
+    Literature getById(String id);
+    List<Literature> getTop5ByTitleStartingWith(String title);
 }
