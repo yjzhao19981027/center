@@ -9,4 +9,5 @@ public interface AuthorService {
     Magauthor getAuthorByID(String id);
     List<Magauthor> getAuthorByName(String name);
     List<Magauthor> getTop5AuthorByName(String name);
+    List<Magauthor> getTop100AuthorByName(String name);
 }

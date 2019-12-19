@@ -9,4 +9,5 @@ public interface LITRepository extends MongoRepository<Literature,String> {
     List<Literature> getByTitleContaining(String title);
     Literature getById(String id);
     List<Literature> getTop5ByTitleStartingWith(String title);
+    List<Literature> getTop100ByTitleContaining(String title);
 }

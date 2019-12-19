@@ -28,4 +28,9 @@ public class LITServiceImpl implements LITService {
     public List<Literature> getTop5LITByTitle(String title) {
         return litRepository.getTop5ByTitleStartingWith(title);
     }
+
+    @Override
+    public List<Literature> getTop100LITByTitle(String title) {
+        return litRepository.getTop100ByTitleContaining(title);
+    }
 }

@@ -31,4 +31,9 @@ public class LITController {
     public LITPaging getLITs(@RequestParam String title, String pageNumber){
         return Tool.getLITsByPaging(title,pageNumber);
     }
+
+    @RequestMapping(value = "getTop100LITsByPaging", method = RequestMethod.GET)
+    public LITPaging getTop100LITs(@RequestParam String title, String pageNumber){
+        return Tool.getTop100LITsByPaging(title,pageNumber);
+    }
 }

@@ -15,4 +15,6 @@ public interface LITService {
     Literature getLITByID(String id);
 
     List<Literature> getTop5LITByTitle(String title);
+
+    List<Literature> getTop100LITByTitle(String title);
 }

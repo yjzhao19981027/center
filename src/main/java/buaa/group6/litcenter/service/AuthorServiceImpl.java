@@ -30,4 +30,9 @@ public class AuthorServiceImpl implements AuthorService{
         return authorRepository.getTop5ByNormalizedNameStartingWith(name);
     }
 
+    @Override
+    public List<Magauthor> getTop100AuthorByName(String name) {
+        return authorRepository.getTop100ByNormalizedNameContaining(name);
+    }
+
 }

@@ -10,4 +10,5 @@ public interface AuthorRepository extends MongoRepository<Magauthor,String> {
     List<Magauthor> getByNormalizedNameContaining(String name);
     List<Magauthor> getTop5ByNormalizedNameStartingWith(String name);
     //这里使用normalized name查询，因为该字段已建立索引，而name字段无法建立
+    List<Magauthor> getTop100ByNormalizedNameContaining(String name);
 }

@@ -69,8 +69,7 @@ public class tools {
 
     //通过作者的姓名的关键字获取前五个
     public List<Magauthor> getTop5AuthorByName(String name){
-        List<Magauthor> list = authorService.getTop5AuthorByName(name);
-        return list.subList(0,Math.min(5,list.size()));
+        return authorService.getTop5AuthorByName(name);
     }
 
     //通过作者的ID获取
@@ -89,6 +88,7 @@ public class tools {
         int pageNumber = Integer.parseInt(page);
         int onePage = 10; //每页显示个数，可调整
         List<Magauthor> list = authorService.getAuthorByName(name);
+        //List<Magauthor> list = authorService.getTop100AuthorByName(name);
         obj.setTotalPage((onePage - 1 + list.size()) / onePage);
         obj.setAuthors(list.subList(onePage * (pageNumber - 1), Math.min(list.size(),onePage * pageNumber)));
         return obj;
@@ -99,6 +99,29 @@ public class tools {
         int pageNumber = Integer.parseInt(page);
         int onePage = 10; //每页显示个数，可调整
         List<Literature> list = litService.getLITByTitle(title);
+        //List<Literature> list = litService.getTop100LITByTitle(title);
+        obj.setTotalPage((onePage - 1 + list.size()) / onePage);
+        obj.setLITs(list.subList(onePage * (pageNumber - 1), Math.min(list.size(),onePage * pageNumber)));
+        return obj;
+    }
+
+    public authorPaging getTop100AuthorsByPaging(String name, String page){
+        authorPaging obj = new authorPaging();
+        int pageNumber = Integer.parseInt(page);
+        int onePage = 10; //每页显示个数，可调整
+        //List<Magauthor> list = authorService.getAuthorByName(name);
+        List<Magauthor> list = authorService.getTop100AuthorByName(name);
+        obj.setTotalPage((onePage - 1 + list.size()) / onePage);
+        obj.setAuthors(list.subList(onePage * (pageNumber - 1), Math.min(list.size(),onePage * pageNumber)));
+        return obj;
+    }
+
+    public LITPaging getTop100LITsByPaging(String title, String page){
+        LITPaging obj = new LITPaging();
+        int pageNumber = Integer.parseInt(page);
+        int onePage = 10; //每页显示个数，可调整
+        //List<Literature> list = litService.getLITByTitle(title);
+        List<Literature> list = litService.getTop100LITByTitle(title);
         obj.setTotalPage((onePage - 1 + list.size()) / onePage);
         obj.setLITs(list.subList(onePage * (pageNumber - 1), Math.min(list.size(),onePage * pageNumber)));
         return obj;

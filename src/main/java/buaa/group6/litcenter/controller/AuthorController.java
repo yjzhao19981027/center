@@ -35,4 +35,9 @@ public class AuthorController {
     public authorPaging getAuthors(@RequestParam String name, String pageNumber){
         return Tool.getAuthorsByPaging(name,pageNumber);
     }
+
+    @RequestMapping(value = "getTop100AuthorsByPaging", method = RequestMethod.GET)
+    public authorPaging getTop100Authors(@RequestParam String name, String pageNumber){
+        return Tool.getTop100AuthorsByPaging(name,pageNumber);
+    }
 }
