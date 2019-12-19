@@ -79,7 +79,7 @@
 	类型：GET方法
 	参数：name，pageNumber
 	参数类型：String，String
-	参数说明：作者名的关键字,要生成的页数
+	参数说明：作者名的关键字,要显示的页
 	详细说明：前端传回关键字和要生成的页数，后端传回一个对象，里面包含当页的用户的list以及总页数。每页当前显示10个，后续可调整。
 	实例：http://localhost:8004/getUsersByPaging?name=hu&pageNumber=1
 	返回类型：UserPaging类的一个对象，里面包含总页数totalPage和一个List<User>的list
