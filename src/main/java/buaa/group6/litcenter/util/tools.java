@@ -37,15 +37,21 @@ public class tools {
     UserRepository userRepository;
 
     //文献排序
-    //第一个参数是按什么排序（发布时间、获得"有帮助"个数、浏览量、被引用量、），第二个参数就是要排序的文献集
-    public List<Literature> LITSort(String keyword, List<Literature> LITs){
-        if(keyword == "year")
-            Collections.sort(LITs, Comparator.comparing(Literature::getYear));
-        else if (keyword == "volume")
-            Collections.sort(LITs,Comparator.comparing(Literature::getVolume));
-        else if(keyword == "n_citation")
-            Collections.sort(LITs,Comparator.comparing(Literature::getN_citation));
-        return LITs;
+    //
+    public LITPaging getSortedLITsByPaging (String type, String title, String page){
+        LITPaging obj = new LITPaging();
+        int pageNumber = Integer.parseInt(page);
+        int onePage = 10; //每页显示个数，可调整
+        List<Literature> list = litService.getTop100LITByTitle(title);
+        if(type.equals("pos")){
+            list.sort(Comparator.comparing(Literature::getN_citation).reversed());
+        }
+        else if(type.equals("inv")){
+            list.sort(Comparator.comparing(Literature::getN_citation));
+        }
+        obj.setTotalPage((onePage - 1 + list.size()) / onePage);
+        obj.setLITs(list.subList(onePage * (pageNumber - 1), Math.min(list.size(),onePage * pageNumber)));
+        return obj;
     }
 
     //文献过滤
